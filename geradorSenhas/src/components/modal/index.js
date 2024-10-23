@@ -2,23 +2,23 @@ import { View, Text, StyleSheet, TouchableOpacity, Pressable } from "react-nativ
 import * as Clipboard from 'expo-clipboard';
 import Toast from 'react-native-toast-message';
 
-export function ModalPassword({ senha, handleClose }) {
+export function ModalPassword({ senha, handleClose, salvarSenha }) {
 
-    function copyClipboard() {
-        Clipboard.setStringAsync(senha);
+    function copyToClipboard() {
+        Clipboard.setStringAsync(senha)
         Toast.show({
             type: 'success',
-            text1: 'Senha copiada',
-            text2: 'Senha copiada para a área de tranfêrencia!',
+            text1: 'senha copiada!',
+            text2: 'A senha foi copiada para a área de transferência👌',
         });
     }
 
     return (
         <View style={styles.container}>
             <View style={styles.content}>
-                <Text style={styles.title}>Senha gerada</Text>
+                <Text style={styles.title}>Senha Gerada</Text>
 
-                <Pressable style={styles.innerPassword} onPress={copyClipboard}>
+                <Pressable style={styles.innerPassword} onPress={copyToClipboard}>
                     <Text style={styles.text}>
                         {senha}
                     </Text>
@@ -29,16 +29,16 @@ export function ModalPassword({ senha, handleClose }) {
                         <Text style={styles.buttonText}>Voltar</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.button, styles.buttonSave]}>
-                        <Text style={styles.buttonSaveText}>Salvar senha</Text>
+                    <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={salvarSenha}>
+                        <Text style={styles.buttonSaveText}>Salvar Senha</Text>
                     </TouchableOpacity>
                 </View>
 
             </View>
 
-            <Toast />
+            <Toast/>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     content: {
-        backgroundColor: "#fff",
+        backgroundColor: "#FFF",
         width: "85%",
         paddingTop: 24,
         paddingBottom: 24,
@@ -71,14 +71,14 @@ const styles = StyleSheet.create({
     },
     text: {
         color: "#000",
-        textAlign: "center",
+        textAlign: "center"
     },
     buttonArea: {
         flexDirection: "row",
         width: "90%",
         marginTop: 8,
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        alignItems: "center",
+        justifyContent: "space-between"
     },
     button: {
         flex: 1,
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
     },
     buttonSaveText: {
-        color: '#FFF',
-        fontWeight: 'bold',
+        color: "#FFF",
+        fontWeight: 'bold'
     },
-})
+});
